@@ -3,26 +3,25 @@ import { UsersRepositories } from "../repositories/UsersRepositories";
 import { hash } from "bcryptjs";
 
 interface IUserRequest {
-  name: string;
+  nome: string;
   email: string;
-  password: string;
-  admin?: boolean;
+  contato: string;
 }
 
 class CreateUserService {
-  async execute({ name, email, admin = false, password }: IUserRequest) {
+  async execute({ nome, email, contato }: IUserRequest) {
     const usersRepository = getCustomRepository(UsersRepositories);
 
-    if (!name || name.trim() === "") {
+    if (!nome || nome.trim() === "") {
       throw new Error("Invalid name");
     }
 
-    if (!password || password.trim() === "") {
-      throw new Error("Invalid password");
+    if (!email || email.trim() === "") {
+      throw new Error("Invalid email");
     }
 
-    if (!email || email.trim() === "") {
-      throw new Error("Email incorrect");
+    if (!contato || contato.trim() === "") {
+      throw new Error("Invalid contato");
     }
 
     const userAlreadyExists = await usersRepository.findOne({
@@ -33,13 +32,11 @@ class CreateUserService {
       throw new Error("User already exists");
     }
 
-    const passwordHash = await hash(password, 8);
 
     const user = usersRepository.create({
-      name,
+      nome,
       email,
-      admin,
-      password: passwordHash,
+      contato
     });
 
     await usersRepository.save(user);

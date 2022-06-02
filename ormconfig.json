@@ -1,6 +1,6 @@
 {
   "type": "sqlite",
-  "database": "src/database/database.sqlite",
+  "database": "src/database/bancodedados.sqlite",
   "migrations": ["src/database/migrations/*.ts"],
   "entities": ["src/entities/*.ts"],
   "cli": {
