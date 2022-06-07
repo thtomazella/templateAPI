@@ -20,6 +20,9 @@ class User {
   @Column()
   contato: string;
 
+  @Column()
+  endereco: string;
+
   constructor() {
     if (!this.id) {
       this.id = uuid();

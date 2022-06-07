@@ -6,10 +6,11 @@ interface IUserRequest {
   nome: string;
   email: string;
   contato: string;
+  endereco: string;
 }
 
 class CreateUserService {
-  async execute({ nome, email, contato }: IUserRequest) {
+  async execute({ nome, email, contato, endereco }: IUserRequest) {
     const usersRepository = getCustomRepository(UsersRepositories);
 
     if (!nome || nome.trim() === "") {
@@ -36,7 +37,8 @@ class CreateUserService {
     const user = usersRepository.create({
       nome,
       email,
-      contato
+      contato,
+      endereco
     });
 
     await usersRepository.save(user);
