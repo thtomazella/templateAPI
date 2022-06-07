@@ -8,7 +8,7 @@ interface IRequest{
 class GetWeatherDataService {
   async execute({ cidade }: IRequest) {
     try {
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?appid=59a516841f713d2d09e808851c08360d&q=${cidade}&units=metric`)
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?appid=&q=${cidade}&units=metric`)
 
       return response.data;
     } catch (error) {
